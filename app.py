@@ -5,7 +5,7 @@ from constants import TEAMS, PLAYERS
 no_exp = []
 exp = []
 new_constants = []
-
+game_is_on = True
 ### Function to separate experienced and non-experienced players
 def ability(data):
     global no_exp
@@ -52,8 +52,7 @@ def clean_data(players, teams):
             fixed["team"] = teams[2]
             team_one = True
             team_three = False
-### Menu Function ###
-#def menu(player_data):
+
 
 def team_data(player_data, team_name):
     team_info = []
@@ -66,7 +65,7 @@ def team_data(player_data, team_name):
         if dict['team'] == team_name:
            team_info.append(dict)
     print("\033[1m" + "{}".format(team_name))
-    print("\nThere are {} total players on the Panthers\n".format(len(team_info)))
+    print("\nThere are {} total players on the {}:\n".format(len(team_info), team_name))
     for player in team_info:
        print(player['name'], end=", ")
        total_height = total_height + player['height']
@@ -85,22 +84,26 @@ def team_data(player_data, team_name):
     for guardian in player_guardians:
         for sep_guardian in guardian:
             sep_guardians.append(sep_guardian)
-    print(sep_guardians)
-    print(", ".join([guardian for guardian in sep_guardians]))
+    print(f"The player's guardians on team {team_name} are:\n\n" + ", ".join([guardian for guardian in sep_guardians]))
+### Menu Function ###
+def menu():
+    while True:
+        team_selection = int(input("\nWhat team would you like to see statistics on?\n\nselect 1 for Panthers, 2 for Bandits, 3 for Warriors, or 4 to quit  "))
+
+        if team_selection == 1:
+            team_data(new_constants, "Panthers")
+        elif team_selection == 2:
+            team_data(new_constants, "Bandits")
+        elif team_selection == 3:
+            team_data(new_constants, "Warriors")
+        else:
+            break
+
+if __name__ == "__main__":
         
+    ability(PLAYERS)
+    clean_data(exp, TEAMS)
+    clean_data(no_exp, TEAMS)
+    menu()
 
 
-   
-
-
-
-
-
-
-ability(PLAYERS)
-clean_data(exp, TEAMS)
-clean_data(no_exp, TEAMS)
-team_data(new_constants, "Panthers")
-#team_data(new_constants, "Bandits")
-#team_data(new_constants, "Warriors")
-#if __name__ == "__main__":
