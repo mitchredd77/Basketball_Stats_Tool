@@ -1,11 +1,13 @@
-import pandas as pd
-
+### Importing data to extract statistics from
 from constants import TEAMS, PLAYERS
 
+### no_exp is a list of players that are inexperienced & exp is  a list of players that are experienced
 no_exp = []
 exp = []
+
+## new_constants will hold the cleaned and modified data
 new_constants = []
-game_is_on = True
+
 ### Function to separate experienced and non-experienced players
 def ability(data):
     global no_exp
@@ -53,7 +55,7 @@ def clean_data(players, teams):
             team_one = True
             team_three = False
 
-
+### when a team is picked that teams data is processed in this funtion
 def team_data(player_data, team_name):
     team_info = []
     player_guardians = []
@@ -64,8 +66,11 @@ def team_data(player_data, team_name):
     for dict in new_constants:
         if dict['team'] == team_name:
            team_info.append(dict)
+    ### print the team name name then total players on the team
     print("\033[1m" + "{}".format(team_name))
     print("\nThere are {} total players on the {}:\n".format(len(team_info), team_name))
+
+    ### print each players name separated by a comma
     for player in team_info:
        print(player['name'], end=", ")
        total_height = total_height + player['height']
@@ -96,14 +101,22 @@ def menu():
             team_data(new_constants, "Bandits")
         elif team_selection == 3:
             team_data(new_constants, "Warriors")
-        else:
+        elif team_selection == 4:
             break
-
 if __name__ == "__main__":
         
     ability(PLAYERS)
     clean_data(exp, TEAMS)
     clean_data(no_exp, TEAMS)
-    menu()
+    while True:
+        try:
+            menu()
+            break
+        except ValueError:
+            print("\nYou did not enter 1, 2, 3, or 4!")
+            continue
+        except:
+            print("\nThere was an error with your input, please select 1, 2, 3, or 4!")
+            continue
 
 
