@@ -68,7 +68,7 @@ def team_data(player_data, team_name):
            team_info.append(dict)
     ### print the team name name then total players on the team
     print("\033[1m" + "{}".format(team_name))
-    print("\nThere are {} total players on the {}:\n".format(len(team_info), team_name))
+    print("\nThere are {} total players on the {} and they are:\n".format(len(team_info), team_name))
 
     ### print each players name separated by a comma
     for player in team_info:
@@ -85,7 +85,7 @@ def team_data(player_data, team_name):
     print("\nAverage height is {}\n". format(total_height/len(team_info)))
     
 
-    ### print out guardians of team separated by comma ###
+### print out guardians of team separated by comma ###
     for guardian in player_guardians:
         for sep_guardian in guardian:
             sep_guardians.append(sep_guardian)
@@ -95,6 +95,7 @@ def menu():
     while True:
         team_selection = int(input("\nWhat team would you like to see statistics on?\n\nselect 1 for Panthers, 2 for Bandits, 3 for Warriors, or 4 to quit  "))
 
+### if statements to add players to teams evenly
         if team_selection == 1:
             team_data(new_constants, "Panthers")
         elif team_selection == 2:
@@ -104,7 +105,8 @@ def menu():
         elif team_selection == 4:
             break
 if __name__ == "__main__":
-        
+
+### run functions for program to run        
     ability(PLAYERS)
     clean_data(exp, TEAMS)
     clean_data(no_exp, TEAMS)
