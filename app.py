@@ -106,10 +106,12 @@ def menu():
             break
 if __name__ == "__main__":
 
-### run functions for program to run        
+### run functions for program to run
+            
     ability(PLAYERS)
     clean_data(exp, TEAMS)
     clean_data(no_exp, TEAMS)
+    print(new_constants)
     while True:
         try:
             menu()
